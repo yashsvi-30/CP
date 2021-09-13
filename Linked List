@@ -11,3 +11,32 @@
         curr=next;
     }
   }
+  
+  𝐃𝐞𝐥𝐞𝐭𝐞 𝐧𝐨𝐝𝐞 𝐢𝐧 𝐃𝐨𝐮𝐛𝐥𝐲 𝐋𝐢𝐧𝐤𝐞𝐝 𝐋𝐢𝐬𝐭:
+ void deleteNode(Node **head_ref, int x)
+{
+    struct Node *p=(*head_ref);
+    while(x>1)
+    {
+        p=p->next;
+        x--;
+    }
+    if(p->prev==NULL)
+    {
+        p=p->next;
+        p->prev=NULL;
+        *head_ref=p;
+        //delete(p->prev);
+    }
+    else if(p->next==NULL)
+    {
+        p=p->prev;
+        p->next=NULL;
+    }
+    else
+    {
+    p->prev->next=p->next;
+    p->next->prev=p->prev;
+    }
+}
+  

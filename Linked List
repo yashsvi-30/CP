@@ -1,1 +1,13 @@
-
+𝐑𝐞𝐯𝐞𝐫𝐬𝐞 𝐚 𝐥𝐢𝐧𝐤𝐞𝐝 𝐥𝐢𝐬𝐭 :
+  void reverse(Node* head){
+    if(head==NULL) return;
+    Node* prev;
+    Node* curr = head;
+    Node* next;
+    while(curr!=NULL){
+        next = curr->next;
+        curr->next = prev;
+        prev=curr;
+        curr=next;
+    }
+  }

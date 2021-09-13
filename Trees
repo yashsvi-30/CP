@@ -91,3 +91,42 @@ bool isBalanced(Node *root)
     return false;
 }
 
+𝐙𝐢𝐠𝐙𝐚𝐠 𝐓𝐫𝐞𝐞 𝐓𝐫𝐚𝐯𝐞𝐫𝐬𝐚𝐥:
+vector <int> zigZagTraversal(Node* root)
+{
+	vector<int> ans;
+	if(root==NULL){
+	    return ans;
+	}
+	queue<Node*> q;
+	int level=0;
+	q.push(root);
+	while(!q.empty()){
+	    int s = q.size();
+	    vector<int> v;
+	    while(s--){
+	        Node* temp = q.front();
+	        q.pop();
+	        if(temp->left) {
+	            q.push(temp->left);
+	        }
+	        if(temp->right){
+	            q.push(temp->right);
+	        }
+	        v.push_back(temp->data);
+	    }
+	    if(level%2==0){
+	        for(int i=0;i<v.size();i++){
+	            ans.push_back(v[i]);
+	        }
+	    }
+	    else{
+	        for(int i=v.size()-1;i>=0;i--){
+	            ans.push_back(v[i]);
+	        }
+	    }
+	    level++;
+	}
+	return ans;
+}
+

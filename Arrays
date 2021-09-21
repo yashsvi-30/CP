@@ -61,4 +61,35 @@ int Countpair(int arr[], int n, int sum){
         return -1;
 }
 
+𝐓𝐫𝐚𝐩𝐩𝐢𝐧𝐠 𝐑𝐚𝐢𝐧𝐰𝐚𝐭𝐞𝐫:
+long long trappingWater(int arr[], int n){
+        // code here
+        int i=0;
+        int j=n-1;
+        int left_max=0;
+        int right_max=0;
+        int result =0;
+        
+        while(i<j){
+            if(arr[i]<arr[j]){
+                if(arr[i]>left_max){
+                    left_max = arr[i];
+                }
+                else{
+                    result+=left_max - arr[i];
+                }
+                i++;
+            }
+            else{
+                if(arr[j]>right_max){
+                    right_max = arr[j];
+                }
+                else{
+                    result+=right_max-arr[j];
+                }
+                j--;
+            }
+        }
+        return result;
+    }
 

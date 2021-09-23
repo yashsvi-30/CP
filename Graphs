@@ -45,6 +45,27 @@ vector<int> bfsOfGraph(int V, vector<int> adj[]) {
         return ans;
 }
 
+𝐃𝐞𝐭𝐞𝐜𝐭 𝐜𝐲𝐜𝐥𝐞 𝐢𝐧 𝐚𝐧 𝐮𝐧𝐝𝐢𝐫𝐞𝐜𝐭𝐞𝐝 𝐠𝐫𝐚𝐩𝐡:
+bool dfs(int i,bool visited[] , vector<int> adj[], int prev ){
+    visited[i]=1;
+    for(auto it=adj[i].begin();it!=adj[i].end();it++){
+         if(!visited[*it]){
+            if(dfs(*it,visited,adj,i))
+                return true;    
+        }
+        else if((*it!=prev)) return true;
+    }
+    return false;
+}
+bool isCyclic(vector<int> adj[],int v){
+  bool  visited[v];
+  memset(visited,0,sizeof(visited));
+  for(int i=0;i<v;i++){
+      if(!visited[i] && dfs(i,visited,adj,-1)) return 1;
+  }
+    return 0;
+}
+
 
  
 

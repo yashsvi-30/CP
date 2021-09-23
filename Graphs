@@ -66,6 +66,8 @@ bool isCyclic(vector<int> adj[],int v){
     return 0;
 }
 
+𝐃𝐞𝐭𝐞𝐜𝐭 𝐜𝐲𝐜𝐥𝐞 𝐢𝐧 𝐚𝐧 𝐝𝐢𝐫𝐞𝐜𝐭𝐞𝐝 𝐠𝐫𝐚𝐩𝐡:
+
 
  
 

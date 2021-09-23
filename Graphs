@@ -66,7 +66,64 @@ bool isCyclic(vector<int> adj[],int v){
     return 0;
 }
 
-𝐃𝐞𝐭𝐞𝐜𝐭 𝐜𝐲𝐜𝐥𝐞 𝐢𝐧 𝐚𝐧 𝐝𝐢𝐫𝐞𝐜𝐭𝐞𝐝 𝐠𝐫𝐚𝐩𝐡:
+𝐅𝐢𝐧𝐝 𝐰𝐡𝐞𝐭𝐡𝐞𝐫 𝐩𝐚𝐭𝐡 𝐞𝐱𝐢𝐬𝐭:
+bool isSafe(int i,int j,vector<vector<int>> &grid){
+        if(i<grid.size() && j<grid.size() && grid[i][j]!=0 && i>=0 && j>=0){
+            return true;
+        }
+        return false;
+    }
+    
+    bool ispath(vector<vector<int>>& grid, int i,int j,bool visited[][n]){
+        if(grid[i][j]!=0  && isSafe(i,j,grid) && !visited[i][j]){
+            visited[i][j]=true;
+            if(grid[i][j]==2){
+                return true;
+            }
+            if(ispath(grid,i-1,j,visited)){
+                return true;
+            }
+            if(ispath(grid,i,j+1,visited)){
+            return true;
+            }
+            if(ispath(grid,i,j-1,visited)){
+                return true;
+            }
+            if(ispath(grid,i+1,j,visited)){
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    bool is_Possible(vector<vector<int>>& grid) 
+    {
+        //code here
+        int n = grid.size();
+        bool flag=false;
+        bool visited[n][n];
+        for(int i=0;i<n;i++){
+            for(int j=0;j<n;j++){
+                visited[i][j]=false;
+            }
+        }
+        for(int i=0;i<n;i++){
+            for(int j=0;j<n;j++){
+                if(grid[i][j]==1 && !visited[i][j]==false){
+                    if(ispath(grid,i,j,visited)){
+                        flag = true;
+                        break;
+                    }
+                }
+            }
+        }
+        if(flag ==1){
+            return "YES";
+        }
+        else{
+            return "NO";
+        }
+    }
 
 
  

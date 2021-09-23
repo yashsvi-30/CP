@@ -23,5 +23,28 @@ vector<int> bfsOfGraph(int V, vector<int> adj[]) {
         return ans;
  }
  
+ 𝐃𝐅𝐒:
+ vector<int> dfs(int V,vector<int> adj[]){
+        bool visited[V];
+        vector<int> ans;
+        stack<int> s;
+        s.push(V);
+        while(!s.empty()){
+                V = s.top();
+                s.pop();
+                if(!visited[V]){
+                        ans.push_back(V);
+                        visited[V] = true;
+                }
+                for(auto it = adj[V].begin();it!=adj[V].end();it++){
+                        if(!visited[*it]){
+                                s.push(*it);
+                        }
+                }
+        }
+        return ans;
+}
+
+
  
 

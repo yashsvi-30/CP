@@ -18,4 +18,33 @@ int ans(int a,int b){
   return dp[a-1][b-1];
 }
 
+𝐂𝐨𝐮𝐧𝐭 𝐰𝐚𝐲𝐬 𝐭𝐨 𝐫𝐞𝐚𝐜𝐡 𝐭𝐡𝐞 𝐧’𝐭𝐡 𝐬𝐭𝐚𝐢𝐫:
+int countWaysUtil(int n, int m)
+{
+    int res[n];
+    res[0] = 1;
+    res[1] = 1;
+    for(int i = 2; i < n; i++)
+    {
+       res[i] = 0;
+       for(int j = 1; j <= m && j <= i; j++)
+          res[i] += res[i - j];
+    }
+    return res[n - 1];
+}
+int countWays(int s, int m)
+{
+    return countWaysUtil(s + 1, m);
+}
+
+𝐌𝐚𝐱𝐢𝐦𝐢𝐳𝐞 𝐓𝐡𝐞 𝐂𝐮𝐭 𝐒𝐞𝐠𝐦𝐞𝐧𝐭𝐬:
+int maximizeTheCuts(int n, int x, int y, int z)
+    {
+        if(n==0) return 0;
+        int one = (n-x)>0?maximizeTheCuts(n-x,x,y,z):0;
+        int two = (n-y)>0?maximizeTheCuts(n-y,x,y,z):0;
+        int three = (n-z)>0?maximizeTheCuts(n-z,x,y,z):0;
+        return 1+max(one,max(two,three));
+    }
+
 

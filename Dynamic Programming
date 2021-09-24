@@ -47,4 +47,40 @@ int maximizeTheCuts(int n, int x, int y, int z)
         return 1+max(one,max(two,three));
     }
 
-
+𝐌𝐢𝐧𝐢𝐦𝐮𝐦 𝐧𝐮𝐦𝐛𝐞𝐫 𝐨𝐟 𝐣𝐮𝐦𝐩𝐬:
+int minJumps(int arr[], int n){
+        if(arr[0]==0 || n==0) return -1;
+        int dp[n];
+        for(int i=0;i<n;i++){
+            dp[i]=INT_MAX;
+        }
+        dp[0]=0;
+        for(int i=1;i<n;i++){
+            for(int j=0;j<i;j++){
+                if(i<=j+arr[j] && dp[i]!=INT_MAX){
+                    dp[i]=min(dp[i],dp[j]+1);
+                }
+            }  
+        }
+        return dp[n-1];
+    }
+    
+  𝐓𝐨𝐭𝐚𝐥 𝐃𝐞𝐜𝐨𝐝𝐢𝐧𝐠 𝐌𝐞𝐬𝐬𝐚𝐠𝐞𝐬:
+  int countDecodingDP(char *digits, int n)
+{
+    int count[n+1];
+    count[0] = 1;
+    count[1] = 1;
+    if(digits[0]=='0') 
+         return 0;
+    for (int i = 2; i <= n; i++)
+    {
+        count[i] = 0;
+        if (digits[i-1] > '0')
+            count[i] = count[i-1];
+        if (digits[i-2] == '1' ||
+              (digits[i-2] == '2' && digits[i-1] < '7') )
+            count[i] += count[i-2];
+    }
+    return count[n];
+}

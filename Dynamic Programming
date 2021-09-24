@@ -84,3 +84,58 @@ int minJumps(int arr[], int n){
     }
     return count[n];
 }
+
+𝐋𝐨𝐧𝐠𝐞𝐬𝐭 𝐂𝐨𝐦𝐦𝐨𝐧 𝐒𝐮𝐛𝐬𝐞𝐪𝐮𝐞𝐧𝐜𝐞:
+int lcs(int m, int n, string s1, string s2)
+    {
+       int L[m + 1][n + 1]; 
+       int i, j; 
+       for (i = 0; i <= m; i++) 
+        { 
+        for (j = 0; j <= n; j++) 
+        { 
+        if (i == 0 || j == 0) 
+            L[i][j] = 0; 
+        else if (s1[i - 1] == s2[j - 1]) 
+            L[i][j] = L[i - 1][j - 1] + 1; 
+        else
+            L[i][j] = max(L[i - 1][j], L[i][j - 1]); 
+        } 
+    }
+    return L[m][n]; 
+    }
+    
+𝐂𝐨𝐧𝐬𝐞𝐜𝐮𝐭𝐢𝐯𝐞 𝟏'𝐬 𝐧𝐨𝐭 𝐚𝐥𝐥𝐨𝐰𝐞𝐝:
+ll countStrings(int n) {
+	    ll a[n];
+	    ll b[n];
+	    a[0]=1;
+	    b[0]=1;
+	    for(int i=1;i<n;i++){
+	        a[i]=a[i-1]+b[i-1];
+	        b[i]=b[i-1];
+	    }
+	    return a[n-1]+b[n-1];
+	}
+  
+𝐄𝐝𝐢𝐭 𝐃𝐢𝐬𝐭𝐚𝐧𝐜𝐞:
+int editDistance(string a,string b,int n,int m){
+    int dp[n+1][m+1];
+    for(int i=0;i<n+1;i++){
+    for(int j=0;j<m+1;j++){
+      if(n==0){
+        dp[i][j] = j;
+      }
+      else if(m==0){
+        dp[i][j]=i;
+      }
+      else if(a[i-1]==b[j-1]){
+        dp[i][j] = dp[i-1][j-1];
+      }
+      else{
+        dp[i][j] = 1 + + min(dp[i][j - 1],dp[i - 1][j], dp[i - 1][j - 1]);
+      }     
+    }
+    }
+    return dp[n][m];
+}

@@ -205,7 +205,31 @@ int maxChainLen(struct val p[],int n)
   return max;
 }
 
-
+𝐖𝐚𝐭𝐞𝐫 𝐎𝐯𝐞𝐫𝐟𝐥𝐨𝐰:
+double waterOverflow(int K, int R, int C) {
+        double glass[(R*(R-1))/2];
+        memset(glass,0,sizeof(glass));
+        glass[0]=K;
+        for(int i=1;i<R;i++){
+            for(int j=1;j<i;j++){
+                int x = glass[i];
+                if(x<=1.0){
+                    x=0;
+                }
+                else{
+                    x = x-1.0;
+                }
+                if(x){
+                    x = x/2;
+                    glass[i+1]+=x;
+                    glass[i+2]+=x;
+                }
+                return glass[(i*(i-1))/2 + j-1];
+            }
+        }
+    }
+   
+  
 	
 	
 

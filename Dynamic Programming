@@ -228,6 +228,21 @@ double waterOverflow(int K, int R, int C) {
             }
         }
     }
+    
+𝐌𝐚𝐱𝐢𝐦𝐮𝐦 𝐓𝐢𝐩 𝐂𝐚𝐥𝐜𝐮𝐥𝐚𝐭𝐨𝐫:
+    if (n == 0)
+        return 0;
+    if (x != 0 and y != 0)
+        return max(
+            arr1[n - 1] + maxTip(arr1, arr2, n - 1,x - 1, y),arr2[n - 1] + maxTip(arr1, arr2, n - 1, x,y - 1));
+    if (y == 0)
+        return arr1[n - 1] + maxTip(arr1, arr2, n - 1,  x - 1, y);
+    else
+        return arr2[n - 1] + maxTip(arr1, arr2, n - 1, x, y - 1);
+}
+
+
+                                                
    
   
 	

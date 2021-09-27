@@ -130,3 +130,60 @@ vector <int> zigZagTraversal(Node* root)
 	return ans;
 }
 
+𝐂𝐨𝐮𝐧𝐭 𝐁𝐒𝐓 𝐧𝐨𝐝𝐞𝐬 𝐭𝐡𝐚𝐭 𝐥𝐢𝐞 𝐢𝐧 𝐚 𝐠𝐢𝐯𝐞𝐧 𝐫𝐚𝐧𝐠𝐞:
+int getCount(Node *root, int l, int h)
+{
+  if(root==NULL) return 0;
+  if(root->data >=l && root->data <=h){
+      return 1+getCount(root->left,l,h)+getCount(root->right,l,h);
+  }
+  else if(root->data < l ){
+      return getCount(root->right,l,h);
+  }
+  else if(root->data >h){
+      return getCount(root->left,l,h);
+  }
+
+}
+
+𝐀𝐝𝐝 𝐚𝐥𝐥 𝐠𝐫𝐞𝐚𝐭𝐞𝐫 𝐯𝐚𝐥𝐮𝐞𝐬 𝐭𝐨 𝐞𝐯𝐞𝐫𝐲 𝐧𝐨𝐝𝐞 𝐢𝐧 𝐚 𝐁𝐒𝐓:
+void modifybst(Node *root,int sum){
+    if(root==NULL) return NULL;
+    modifybst(root->right,sum);
+    *sum = *sum+root->data;
+    root->data = *sum;
+    modifybst(root->left,sum);
+}
+
+void modify(Node *root)
+{
+    int sum=0;
+    modifybst(root,&sum);
+}
+
+𝐏𝐫𝐞𝐝𝐞𝐜𝐞𝐬𝐬𝐨𝐫 𝐚𝐧𝐝 𝐒𝐮𝐜𝐜𝐞𝐬𝐬𝐨𝐫:
+void inorderpre(Node* root,int pre,int suc,int key){
+	if(root==NULL){
+		return NULL;
+	}
+	if(root->data ==key){
+		while(root->left!=NULL){
+			Node* temp = root->left;
+			temp = temp->left;
+			pre = temp;
+		}
+		while(root->right!=NULL){
+			Node* temp1 = root->right;
+			temp1 = temp1->right;
+			suc = temp1;
+		}
+	}
+	if(root->data >key){
+		inorderpre(root->left,pre,suc,key);
+	}
+	else{
+		inorderpre(root->right,pre,suc,key);
+	}
+}
+
+
